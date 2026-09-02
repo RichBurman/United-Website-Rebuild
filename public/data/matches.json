@@ -1,0 +1,76 @@
+{
+  "matches": [
+    {
+      "id": 1001,
+      "utcDate": "2026-09-19T15:00:00Z",
+      "status": "TIMED",
+      "homeTeam": {
+        "id": 66,
+        "name": "Manchester United",
+        "crest": "assets/images/manchester-united.png"
+      },
+      "awayTeam": {
+        "id": 64,
+        "name": "Liverpool FC",
+        "crest": "assets/images/liverpool.png"
+      },
+      "score": {
+        "fullTime": {
+          "home": null,
+          "away": null
+        }
+      },
+      "competition": {
+        "name": "Premier League"
+      }
+    },
+    {
+      "id": 1002,
+      "utcDate": "2026-09-26T15:00:00Z",
+      "status": "TIMED",
+      "homeTeam": {
+        "id": 65,
+        "name": "Manchester City FC",
+        "crest": "assets/images/manchester-city.png"
+      },
+      "awayTeam": {
+        "id": 66,
+        "name": "Manchester United",
+        "crest": "assets/images/manchester-united.png"
+      },
+      "score": {
+        "fullTime": {
+          "home": null,
+          "away": null
+        }
+      },
+      "competition": {
+        "name": "Premier League"
+      }
+    },
+    {
+      "id": 1003,
+      "utcDate": "2026-08-30T15:00:00Z",
+      "status": "FINISHED",
+      "homeTeam": {
+        "id": 66,
+        "name": "Manchester United",
+        "crest": "assets/images/manchester-united.png"
+      },
+      "awayTeam": {
+        "id": 61,
+        "name": "Chelsea FC",
+        "crest": "assets/images/chelsea.png"
+      },
+      "score": {
+        "fullTime": {
+          "home": 2,
+          "away": 1
+        }
+      },
+      "competition": {
+        "name": "Premier League"
+      }
+    }
+  ]
+}

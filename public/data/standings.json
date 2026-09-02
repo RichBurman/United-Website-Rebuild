@@ -1,0 +1,37 @@
+{
+  "standings": [
+    {
+      "position": 1,
+      "team": "Manchester United",
+      "played": 3,
+      "won": 3,
+      "drawn": 0,
+      "lost": 0,
+      "goalDifference": 5,
+      "points": 9,
+      "crest": "assets/images/manchester-united.png"
+    },
+    {
+      "position": 2,
+      "team": "Liverpool FC",
+      "played": 3,
+      "won": 2,
+      "drawn": 1,
+      "lost": 0,
+      "goalDifference": 4,
+      "points": 7,
+      "crest": "assets/images/liverpool.png"
+    },
+    {
+      "position": 3,
+      "team": "Arsenal FC",
+      "played": 3,
+      "won": 2,
+      "drawn": 0,
+      "lost": 1,
+      "goalDifference": 3,
+      "points": 6,
+      "crest": "assets/images/arsenal.png"
+    }
+  ]
+}

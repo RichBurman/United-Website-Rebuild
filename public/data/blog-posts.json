@@ -1,0 +1,18 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Welcome to the Manchester United Dashboard",
+      "date": "2026-09-01",
+      "excerpt": "Welcome to the new Manchester United dashboard.",
+      "content": "This dashboard brings together fixtures, results, players, league table information and Manchester United blog content in one application."
+    },
+    {
+      "id": 2,
+      "title": "The Importance of Squad Depth",
+      "date": "2026-09-02",
+      "excerpt": "Why having a strong squad matters over a long Premier League season.",
+      "content": "A Premier League season is a long campaign and squad depth can play a huge role in maintaining performance throughout the season."
+    }
+  ]
+}

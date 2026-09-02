@@ -1,1 +1,29 @@
 <h1>Fixtures</h1>
+
+<section class="fixtures-page">
+  <div class="container">
+    <h1>Manchester United Fixtures</h1>
+
+    @if (fixtures$ | async; as fixtures) {
+      @for (fixture of fixtures; track fixture.id) {
+        <article class="fixture">
+          <h2>
+            Manchester United
+            vs
+            {{ fixture.opponent }}
+          </h2>
+
+          <p>
+            {{ fixture.date | date:'EEE d MMM, HH:mm' }}
+          </p>
+
+          <p>
+            {{ fixture.homeMatch ? 'Home' : 'Away' }}
+            ·
+            {{ fixture.venue }}
+          </p>
+        </article>
+      }
+    }
+  </div>
+</section>

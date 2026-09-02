@@ -1,0 +1,40 @@
+{
+  "players": [
+    {
+      "id": 1,
+      "name": "Bruno Fernandes",
+      "position": "Midfielder",
+      "number": 8,
+      "nationality": "Portugal",
+      "age": 31,
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "photoUrl": "assets/images/bruno-fernandes.png"
+    },
+    {
+      "id": 2,
+      "name": "Harry Maguire",
+      "position": "Defender",
+      "number": 5,
+      "nationality": "England",
+      "age": 33,
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "photoUrl": "assets/images/harry-maguire.png"
+    },
+    {
+      "id": 3,
+      "name": "Mason Mount",
+      "position": "Midfielder",
+      "number": 7,
+      "nationality": "England",
+      "age": 27,
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "photoUrl": "assets/images/mason-mount.png"
+    }
+  ]
+}
