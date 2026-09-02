@@ -1,0 +1,11 @@
+.site-footer {
+  margin-top: 3rem;
+  padding: 2rem 0;
+  background: #222;
+  color: white;
+}
+
+.container {
+  width: min(1200px, 90%);
+  margin: 0 auto;
+}
