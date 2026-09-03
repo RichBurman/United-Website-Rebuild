@@ -10,6 +10,7 @@ interface ApiMatch {
   id: number;
   utcDate: string;
   status: string;
+  venue: string;
 
   homeTeam: {
     id: number;
@@ -52,6 +53,7 @@ export class FixtureService {
           .map((match): Fixture => ({
             id: match.id,
             date: match.utcDate,
+            venue: match.venue,
             homeTeam: match.homeTeam.name,
             awayTeam: match.awayTeam.name,
             homeScore: match.score.fullTime.home,

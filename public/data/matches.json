@@ -4,6 +4,7 @@
       "id": 1001,
       "utcDate": "2026-09-19T15:00:00Z",
       "status": "TIMED",
+      "venue": "Old Trafford",
       "homeTeam": {
         "id": 66,
         "name": "Manchester United",
@@ -28,6 +29,7 @@
       "id": 1002,
       "utcDate": "2026-09-26T15:00:00Z",
       "status": "TIMED",
+      "venue": "Etihad Stadium",
       "homeTeam": {
         "id": 65,
         "name": "Manchester City FC",
@@ -52,6 +54,7 @@
       "id": 1003,
       "utcDate": "2026-08-30T15:00:00Z",
       "status": "FINISHED",
+      "venue": "Old Trafford",
       "homeTeam": {
         "id": 66,
         "name": "Manchester United",

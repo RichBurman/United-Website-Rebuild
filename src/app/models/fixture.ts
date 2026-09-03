@@ -1,6 +1,7 @@
 export interface Fixture {
 id: number;
 date: string;
+venue: string;
 homeTeam: string;
 awayTeam: string;
 homeScore: number | null;

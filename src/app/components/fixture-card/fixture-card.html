@@ -1,8 +1,11 @@
 <article class="fixture-card">
-
   <div class="fixture-header">
     <div class="fixture-date">
-      {{ fixture().date | date:'EEE d MMM, HH:mm' }}
+      {{ fixture().date | date: "EEE d MMM, HH:mm" }}
+    </div>
+
+    <div class="fixture-venue">
+      {{ fixture().venue }}
     </div>
 
     <div class="fixture-competition">
@@ -11,16 +14,13 @@
   </div>
 
   <div class="fixture-content">
-
     <div class="team">
       <span>{{ fixture().homeTeam }}</span>
     </div>
 
     <div class="score">
-      @if (fixture().status === 'FINISHED') {
-        <span>
-          {{ fixture().homeScore }} - {{ fixture().awayScore }}
-        </span>
+      @if (fixture().status === "FINISHED") {
+        <span> {{ fixture().homeScore }} - {{ fixture().awayScore }} </span>
       } @else {
         <span>VS</span>
       }
@@ -29,15 +29,13 @@
     <div class="team">
       <span>{{ fixture().awayTeam }}</span>
     </div>
-
   </div>
 
   <div class="fixture-status">
-    @if (fixture().status === 'FINISHED') {
+    @if (fixture().status === "FINISHED") {
       Full Time
     } @else {
       Upcoming
     }
   </div>
-
 </article>
