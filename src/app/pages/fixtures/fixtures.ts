@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { FixtureService } from '../../services/fixture';
 import { FixtureCard } from '../../components/fixture-card/fixture-card';
-import { AsyncPipe, DatePipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-fixtures',
-  imports: [AsyncPipe, DatePipe, FixtureCard],
+  imports: [AsyncPipe, FixtureCard],
   templateUrl: './fixtures.html',
   styleUrl: './fixtures.css',
 })

@@ -1,25 +1,43 @@
 <article class="fixture-card">
-  <div class="fixture-date">
-    {{ fixture().date | date:'EEE d MMM, HH:mm' }}
+
+  <div class="fixture-header">
+    <div class="fixture-date">
+      {{ fixture().date | date:'EEE d MMM, HH:mm' }}
+    </div>
+
+    <div class="fixture-competition">
+      {{ fixture().competition }}
+    </div>
   </div>
 
   <div class="fixture-content">
-    <div class="team">
-      <span>Manchester United</span>
-    </div>
-
-    <div class="vs">
-      VS
-    </div>
 
     <div class="team">
-      <span>{{ fixture().opponent }}</span>
+      <span>{{ fixture().homeTeam }}</span>
     </div>
+
+    <div class="score">
+      @if (fixture().status === 'FINISHED') {
+        <span>
+          {{ fixture().homeScore }} - {{ fixture().awayScore }}
+        </span>
+      } @else {
+        <span>VS</span>
+      }
+    </div>
+
+    <div class="team">
+      <span>{{ fixture().awayTeam }}</span>
+    </div>
+
   </div>
 
-  <div class="fixture-venue">
-    {{ fixture().homeMatch ? 'Home' : 'Away' }}
-    ·
-    {{ fixture().venue }}
+  <div class="fixture-status">
+    @if (fixture().status === 'FINISHED') {
+      Full Time
+    } @else {
+      Upcoming
+    }
   </div>
+
 </article>

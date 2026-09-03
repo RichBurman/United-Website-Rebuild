@@ -1,5 +1,7 @@
 import { Injectable, inject } from '@angular/core';
+
 import { HttpClient } from '@angular/common/http';
+
 import { map, Observable } from 'rxjs';
 
 import { Fixture } from '../models/fixture';
@@ -8,22 +10,26 @@ interface ApiMatch {
   id: number;
   utcDate: string;
   status: string;
+
   homeTeam: {
     id: number;
     name: string;
     crest: string;
   };
+
   awayTeam: {
     id: number;
     name: string;
     crest: string;
   };
+
   score: {
     fullTime: {
       home: number | null;
       away: number | null;
     };
   };
+
   competition: {
     name: string;
   };
@@ -43,22 +49,23 @@ export class FixtureService {
     return this.http.get<MatchesResponse>('/data/matches.json').pipe(
       map((response) =>
         response.matches
-          .filter((match) => match.status === 'TIMED')
-          .map((match) => ({
+          .map((match): Fixture => ({
             id: match.id,
             date: match.utcDate,
-            opponent:
-              match.homeTeam.id === 66
-                ? match.awayTeam.name
-                : match.homeTeam.name,
-            venue:
-              match.homeTeam.id === 66 ? 'Old Trafford' : match.homeTeam.name,
-            homeMatch: match.homeTeam.id === 66,
-            opponentCrest:
-              match.homeTeam.id === 66
-                ? match.awayTeam.crest
-                : match.homeTeam.crest,
-          })),
+            homeTeam: match.homeTeam.name,
+            awayTeam: match.awayTeam.name,
+            homeScore: match.score.fullTime.home,
+            awayScore: match.score.fullTime.away,
+            competition: match.competition.name,
+            status:
+              match.status === 'FINISHED'
+                ? 'FINISHED'
+                : 'UPCOMING',
+          }))
+          .sort(
+            (a, b) =>
+              new Date(a.date).getTime() - new Date(b.date).getTime(),
+          ), 
       ),
     );
   }
