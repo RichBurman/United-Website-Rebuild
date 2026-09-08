@@ -17,16 +17,34 @@
       </thead>
 
       <tbody>
-        @for (team of teams; track team.teamName) {
-          <tr>
-            <td>{{ team.position }}</td>
-            <td>{{ team.teamName }}</td>
+        @for (team of teams; track team.teamId) {
+          <tr [class.man-united]="team.tla === 'MUN'">
+            <td class="position">
+              {{ team.position }}
+            </td>
+
+            <td class="team-cell">
+              <img
+                class="team-crest"
+                [src]="team.crest"
+                [alt]="team.teamName + ' crest'"
+              />
+
+              <span>{{ team.teamName }}</span>
+            </td>
+
             <td>{{ team.playedGames }}</td>
             <td>{{ team.won }}</td>
             <td>{{ team.draw }}</td>
             <td>{{ team.lost }}</td>
-            <td>{{ team.goalDifference }}</td>
-            <td>{{ team.points }}</td>
+
+            <td class="goal-difference">
+              {{ team.goalDifference }}
+            </td>
+
+            <td class="points">
+              {{ team.points }}
+            </td>
           </tr>
         }
       </tbody>

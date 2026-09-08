@@ -1,0 +1,116 @@
+.league-table-page {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  padding: 2.5rem 0;
+}
+
+.league-table-page h1 {
+  margin: 0 0 1.5rem;
+  font-size: 2rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 2px 8px rgb(0 0 0 / 6%),
+    0 12px 30px rgb(0 0 0 / 8%);
+}
+
+thead {
+  background: #111827;
+  color: #ffffff;
+}
+
+th {
+  padding: 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+th:first-child {
+  width: 60px;
+}
+
+th:nth-child(2) {
+  text-align: left;
+}
+
+th:last-child {
+  width: 70px;
+}
+
+td {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+td:nth-child(2) {
+  text-align: left;
+}
+
+tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.team-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+}
+
+.team-crest {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.position {
+  width: 60px;
+  font-weight: 700;
+  color: #4b5563;
+}
+
+.goal-difference {
+  font-weight: 600;
+}
+
+.points {
+  width: 70px;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+tbody tr.man-united {
+  background: #fff1f2;
+}
+
+tbody tr.man-united:hover {
+  background: #ffe4e6;
+}
+
+tbody tr.man-united .team-cell {
+  font-weight: 800;
+}
+
+tbody tr.man-united .position {
+  border-left: 4px solid #da291c;
+  color: #da291c;
+}

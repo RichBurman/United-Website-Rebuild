@@ -22,8 +22,11 @@ export class League {
       .pipe(
         map((response) =>
           response.standings[0].table.map((team) => ({
+            teamId: team.team.id,
             position: team.position,
             teamName: team.team.shortName,
+            tla: team.team.tla,
+            crest: team.team.crest,
             playedGames: team.playedGames,
             won: team.won,
             draw: team.draw,
