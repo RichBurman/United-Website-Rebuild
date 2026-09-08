@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { map, Observable } from 'rxjs';
 
-import { Fixture } from '../models/fixture';
+import { Fixture } from '../../models/fixture';
 
 interface ApiMatch {
   id: number;

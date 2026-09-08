@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FixtureService } from '../../services/fixture';
+import { FixtureService } from '../../services/fixture/fixture';
 import { FixtureCard } from '../../components/fixture-card/fixture-card';
 import { AsyncPipe } from '@angular/common';
 

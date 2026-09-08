@@ -2,9 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
-import { environment } from '../../environments/environment';
-import { LeagueApiResponse } from '../models/league-api';
-import { LeagueTeam } from '../models/league';
+import { environment } from '../../../environments/environment';
+import { LeagueApiResponse } from '../../models/league-api';
+import { LeagueTeam } from '../../models/league';
 
 @Injectable({
   providedIn: 'root',

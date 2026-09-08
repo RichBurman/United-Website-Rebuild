@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 
-import { League } from '../../services/league';
+import { League } from '../../services/league/league';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
