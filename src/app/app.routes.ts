@@ -44,10 +44,7 @@ export const routes: Routes = [
     path: 'blog',
     component: Blog,
   },
-  {
-    path: 'blog/:id',
-    component: BlogPost,
-  },
+  { path: 'blog/:slug', component: BlogPost },
   {
     path: 'admin',
     component: Admin,
@@ -56,4 +53,4 @@ export const routes: Routes = [
     path: '**',
     component: NotFound,
   },
-];;
+];
