@@ -5,10 +5,12 @@
       <p>Latest thoughts, analysis and opinion on Manchester United.</p>
     </div>
 
-    <div class="blog-grid">
-      @for (post of posts; track post.id) {
-        <app-blog-card [post]="post" />
-      }
-    </div>
+    @if (posts | async; as blogPosts) {
+      <div class="blog-grid">
+        @for (post of blogPosts; track post.id) {
+          <app-blog-card [post]="post" />
+        }
+      </div>
+    }
   </div>
 </section>

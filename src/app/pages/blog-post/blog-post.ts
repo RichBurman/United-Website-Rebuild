@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { DatePipe } from '@angular/common';
+import { DatePipe, AsyncPipe } from '@angular/common';
 
 import { BlogService } from '../../services/blog/blog.service.ts';
 
 
 @Component({
   selector: 'app-blog-post',
-  imports: [DatePipe, RouterLink],
+  imports: [DatePipe, RouterLink, AsyncPipe],
   templateUrl: './blog-post.html',
   styleUrl: './blog-post.css',
 })
@@ -19,5 +19,5 @@ export class BlogPost {
 
   post = this.slug
     ? this.blogService.getPostBySlug(this.slug)
-    : undefined;
+    : Promise.resolve(undefined);
 }

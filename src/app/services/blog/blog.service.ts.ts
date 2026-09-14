@@ -1,46 +1,69 @@
 import { Injectable } from '@angular/core';
+import { Query } from 'appwrite';
+
 import { BlogPost } from '../../models/blog-post';
+import {
+  tablesDB,
+  databaseId,
+  blogPostsTableId,
+} from '../../appwrite';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BlogService {
-  private posts: BlogPost[] = [
-    {
-      id: '1',
-      title: 'Manchester United Start the Season Strong',
-      slug: 'manchester-united-start-the-season-strong',
-      excerpt:
-        'A look at Manchester United’s opening games and what we have learned so far.',
-      content:
-        'Manchester United have started the new season with plenty of talking points. This is our first test blog post and will eventually be replaced with content stored in Supabase.',
-      imageUrl: '',
-      author: 'Richard Burman',
-      publishedAt: '2026-09-10T10:00:00Z',
-      updatedAt: '2026-09-10T10:00:00Z',
-      published: true,
-    },
-    {
-      id: '2',
-      title: 'What to Expect From United This Season',
-      slug: 'what-to-expect-from-united-this-season',
-      excerpt:
-        'Looking ahead at the key players, competitions and challenges facing United.',
-      content:
-        'There is plenty to look forward to this season. This second mock post gives us enough data to build and test the blog page before connecting a database.',
-      imageUrl: '',
-      author: 'Richard Burman',
-      publishedAt: '2026-09-08T10:00:00Z',
-      updatedAt: '2026-09-08T10:00:00Z',
-      published: true,
-    },
-  ];
+  async getPosts(): Promise<BlogPost[]> {
+    const response = await tablesDB.listRows({
+      databaseId,
+      tableId: blogPostsTableId,
+      queries: [
+        Query.equal('published', true),
+        Query.orderDesc('publishedAt'),
+      ],
+    });
 
-  getPosts(): BlogPost[] {
-    return this.posts.filter((post) => post.published);
+    return response.rows.map((row) => ({
+      id: row.$id,
+      title: row['title'] as string,
+      slug: row['slug'] as string,
+      excerpt: row['excerpt'] as string,
+      content: row['content'] as string,
+      imageUrl: (row['imageUrl'] as string) ?? '',
+      author: row['author'] as string,
+      publishedAt: row['publishedAt'] as string,
+      updatedAt: row['updatedAt'] as string,
+      published: row['published'] as boolean,
+    }));
   }
 
-  getPostBySlug(slug: string): BlogPost | undefined {
-    return this.posts.find((post) => post.slug === slug && post.published);
+  async getPostBySlug(slug: string): Promise<BlogPost | undefined> {
+    const response = await tablesDB.listRows({
+      databaseId,
+      tableId: blogPostsTableId,
+      queries: [
+        Query.equal('slug', slug),
+        Query.equal('published', true),
+        Query.limit(1),
+      ],
+    });
+
+    const row = response.rows[0];
+
+    if (!row) {
+      return undefined;
+    }
+
+    return {
+      id: row.$id,
+      title: row['title'] as string,
+      slug: row['slug'] as string,
+      excerpt: row['excerpt'] as string,
+      content: row['content'] as string,
+      imageUrl: (row['imageUrl'] as string) ?? '',
+      author: row['author'] as string,
+      publishedAt: row['publishedAt'] as string,
+      updatedAt: row['updatedAt'] as string,
+      published: row['published'] as boolean,
+    };
   }
 }
