@@ -1,1 +1,28 @@
-<h1>Blog Post</h1>
+<section class="blog-post-page">
+  <div class="container">
+    @if (post) {
+      <a class="back-link" routerLink="/blog"> ← Back to Blog </a>
+      <article class="blog-post">
+        <header class="post-header">
+          <p class="post-date">
+            {{ post.publishedAt | date: "d MMMM yyyy" }}
+          </p>
+
+          <h1>{{ post.title }}</h1>
+
+          <p class="post-author">By {{ post.author }}</p>
+        </header>
+
+        @if (post.imageUrl) {
+          <img class="post-image" [src]="post.imageUrl" [alt]="post.title" />
+        }
+
+        <div class="post-content">
+          <p>{{ post.content }}</p>
+        </div>
+      </article>
+    } @else {
+      <h1>Blog post not found</h1>
+    }
+  </div>
+</section>
