@@ -1,0 +1,28 @@
+<article class="blog-card">
+  @if (post().imageUrl) {
+    <img
+      class="blog-image"
+      [src]="post().imageUrl"
+      [alt]="post().title"
+    />
+  }
+
+  <div class="blog-content">
+    <p class="blog-date">
+      {{ post().publishedAt | date:'d MMMM yyyy' }}
+    </p>
+
+    <h2>{{ post().title }}</h2>
+
+    <p class="blog-excerpt">
+      {{ post().excerpt }}
+    </p>
+
+    <a
+      class="read-more"
+      [routerLink]="['/blog', post().slug]"
+    >
+      Read article
+    </a>
+  </div>
+</article>

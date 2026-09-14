@@ -1,0 +1,44 @@
+.blog-card {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+}
+
+.blog-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.blog-content {
+  padding: 1.5rem;
+}
+
+.blog-date {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.blog-content h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.4rem;
+}
+
+.blog-excerpt {
+  margin: 0 0 1.25rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.read-more {
+  font-weight: 700;
+  text-decoration: none;
+  color: #da291c;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
