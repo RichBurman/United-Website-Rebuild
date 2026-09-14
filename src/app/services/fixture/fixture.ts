@@ -27,7 +27,9 @@ export class FixtureService {
               (match): Fixture => ({
                 id: match.id,
                 date: match.utcDate,
-                venue: match.venue ?? 'Venue TBC',
+                venue:
+                  match.venue ??
+                  (match.homeTeam.tla === 'MUN' ? 'Old Trafford' : 'Away'),
 
                 homeTeam: match.homeTeam.shortName,
                 homeTeamCrest: match.homeTeam.crest,

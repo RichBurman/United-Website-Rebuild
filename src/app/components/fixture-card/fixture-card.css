@@ -54,3 +54,10 @@
   font-size: 0.9rem;
   color: #666;
 }
+
+.team-crest {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
