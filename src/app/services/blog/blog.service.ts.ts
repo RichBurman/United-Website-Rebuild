@@ -80,4 +80,50 @@ export class BlogService {
       published: row['published'] as boolean,
     };
   }
+
+  async createPost(post: Omit<BlogPost, 'id'>): Promise<void> {
+    await tablesDB.createRow({
+      databaseId,
+      tableId: blogPostsTableId,
+      rowId: 'unique()',
+      data: {
+        title: post.title,
+        slug: post.slug,
+        excerpt: post.excerpt,
+        content: post.content,
+        imageUrl: post.imageUrl,
+        author: post.author,
+        publishedAt: post.publishedAt,
+        updatedAt: post.updatedAt,
+        published: post.published,
+      },
+    });
+  }
+
+  async updatePost(id: string, post: Omit<BlogPost, 'id'>): Promise<void> {
+    await tablesDB.updateRow({
+      databaseId,
+      tableId: blogPostsTableId,
+      rowId: id,
+      data: {
+        title: post.title,
+        slug: post.slug,
+        excerpt: post.excerpt,
+        content: post.content,
+        imageUrl: post.imageUrl,
+        author: post.author,
+        publishedAt: post.publishedAt,
+        updatedAt: post.updatedAt,
+        published: post.published,
+      },
+    });
+  }
+
+  async deletePost(id: string): Promise<void> {
+    await tablesDB.deleteRow({
+      databaseId,
+      tableId: blogPostsTableId,
+      rowId: id,
+    });
+  }
 }

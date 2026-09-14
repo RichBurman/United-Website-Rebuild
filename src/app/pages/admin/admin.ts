@@ -16,6 +16,31 @@ export class Admin {
   private authService = inject(AuthService);
   private blogService = inject(BlogService);
 
+  editingPostId = signal<string | null>(null);
+
+  showCreateForm = signal(false);
+
+  newPost = {
+    title: '',
+    slug: '',
+    excerpt: '',
+    content: '',
+    imageUrl: '',
+    author: 'Richard Burman',
+    published: false,
+  };
+
+  editPost = {
+    title: '',
+    slug: '',
+    excerpt: '',
+    content: '',
+    imageUrl: '',
+    author: '',
+    publishedAt: '',
+    published: false,
+  };
+
   posts = signal<BlogPost[]>([]);
   email = '';
   password = '';
@@ -80,6 +105,101 @@ export class Admin {
       this.posts.set(posts);
     } catch (error) {
       console.error('Unable to load admin posts:', error);
+    }
+  }
+
+  async createPost() {
+    try {
+      const now = new Date().toISOString();
+
+      await this.blogService.createPost({
+        title: this.newPost.title,
+        slug: this.newPost.slug,
+        excerpt: this.newPost.excerpt,
+        content: this.newPost.content,
+        imageUrl: this.newPost.imageUrl,
+        author: this.newPost.author,
+        publishedAt: now,
+        updatedAt: now,
+        published: this.newPost.published,
+      });
+
+      this.showCreateForm.set(false);
+
+      this.newPost = {
+        title: '',
+        slug: '',
+        excerpt: '',
+        content: '',
+        imageUrl: '',
+        author: 'Richard Burman',
+        published: false,
+      };
+
+      await this.loadPosts();
+    } catch (error) {
+      console.error('Unable to create post:', error);
+    }
+  }
+
+  startEdit(post: BlogPost) {
+    this.editingPostId.set(post.id);
+
+    this.editPost = {
+      title: post.title,
+      slug: post.slug,
+      excerpt: post.excerpt,
+      content: post.content,
+      imageUrl: post.imageUrl,
+      author: post.author,
+      publishedAt: post.publishedAt,
+      published: post.published,
+    };
+  }
+
+  async saveEdit() {
+    const id = this.editingPostId();
+
+    if (!id) {
+      return;
+    }
+
+    try {
+      await this.blogService.updatePost(id, {
+        title: this.editPost.title,
+        slug: this.editPost.slug,
+        excerpt: this.editPost.excerpt,
+        content: this.editPost.content,
+        imageUrl: this.editPost.imageUrl,
+        author: this.editPost.author,
+        publishedAt: this.editPost.publishedAt,
+        updatedAt: new Date().toISOString(),
+        published: this.editPost.published,
+      });
+
+      this.editingPostId.set(null);
+
+      await this.loadPosts();
+    } catch (error) {
+      console.error('Unable to update post:', error);
+    }
+  }
+
+  async deletePost(post: BlogPost) {
+    const confirmed = confirm(
+      `Are you sure you want to delete "${post.title}"?`,
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      await this.blogService.deletePost(post.id);
+
+      await this.loadPosts();
+    } catch (error) {
+      console.error('Unable to delete post:', error);
     }
   }
 }
