@@ -9,4 +9,5 @@ export interface BlogPost {
   publishedAt: string;
   updatedAt: string;
   published: boolean;
+  tags: string[];
 }

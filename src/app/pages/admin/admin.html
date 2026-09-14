@@ -81,6 +81,24 @@
           />
         </div>
 
+        <div class="form-group">
+          <span class="form-label">Tags</span>
+
+          <div class="tag-options">
+            @for (tag of tagOptions; track tag) {
+              <label class="tag-option">
+                <input
+                  type="checkbox"
+                  [checked]="newPost.tags.includes(tag)"
+                  (change)="toggleNewPostTag(tag)"
+                />
+
+                {{ tag }}
+              </label>
+            }
+          </div>
+        </div>
+
         <label>
           <input
             type="checkbox"
@@ -187,6 +205,24 @@
             [(ngModel)]="editPost.author"
             required
           />
+        </div>
+
+        <div class="form-group">
+          <span class="form-label">Tags</span>
+
+          <div class="tag-options">
+            @for (tag of tagOptions; track tag) {
+              <label class="tag-option">
+                <input
+                  type="checkbox"
+                  [checked]="editPost.tags.includes(tag)"
+                  (change)="toggleEditPostTag(tag)"
+                />
+
+                {{ tag }}
+              </label>
+            }
+          </div>
         </div>
 
         <label>

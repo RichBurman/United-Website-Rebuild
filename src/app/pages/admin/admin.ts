@@ -28,6 +28,7 @@ export class Admin {
     imageUrl: '',
     author: 'Richard Burman',
     published: false,
+    tags: [] as string[],
   };
 
   editPost = {
@@ -39,7 +40,10 @@ export class Admin {
     author: '',
     publishedAt: '',
     published: false,
+    tags: [] as string[],
   };
+
+  tagOptions = ['Match', 'Transfers', 'Team News', 'Opinion', 'Tactics'];
 
   posts = signal<BlogPost[]>([]);
   email = '';
@@ -122,6 +126,7 @@ export class Admin {
         publishedAt: now,
         updatedAt: now,
         published: this.newPost.published,
+        tags: this.newPost.tags,
       });
 
       this.showCreateForm.set(false);
@@ -134,6 +139,7 @@ export class Admin {
         imageUrl: '',
         author: 'Richard Burman',
         published: false,
+        tags: [],
       };
 
       await this.loadPosts();
@@ -154,6 +160,7 @@ export class Admin {
       author: post.author,
       publishedAt: post.publishedAt,
       published: post.published,
+      tags: [...post.tags],
     };
   }
 
@@ -175,6 +182,7 @@ export class Admin {
         publishedAt: this.editPost.publishedAt,
         updatedAt: new Date().toISOString(),
         published: this.editPost.published,
+        tags: this.editPost.tags,
       });
 
       this.editingPostId.set(null);
@@ -200,6 +208,26 @@ export class Admin {
       await this.loadPosts();
     } catch (error) {
       console.error('Unable to delete post:', error);
+    }
+  }
+
+  toggleNewPostTag(tag: string) {
+    if (this.newPost.tags.includes(tag)) {
+      this.newPost.tags = this.newPost.tags.filter(
+        (existingTag) => existingTag !== tag,
+      );
+    } else {
+      this.newPost.tags = [...this.newPost.tags, tag];
+    }
+  }
+
+  toggleEditPostTag(tag: string) {
+    if (this.editPost.tags.includes(tag)) {
+      this.editPost.tags = this.editPost.tags.filter(
+        (existingTag) => existingTag !== tag,
+      );
+    } else {
+      this.editPost.tags = [...this.editPost.tags, tag];
     }
   }
 }

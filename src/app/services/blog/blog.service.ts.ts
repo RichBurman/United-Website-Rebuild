@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Query } from 'appwrite';
+import { ID, Query } from 'appwrite';
 
 import { BlogPost } from '../../models/blog-post';
 import { tablesDB, databaseId, blogPostsTableId } from '../../appwrite';
@@ -26,6 +26,7 @@ export class BlogService {
       publishedAt: row['publishedAt'] as string,
       updatedAt: row['updatedAt'] as string,
       published: row['published'] as boolean,
+      tags: (row['tags'] as string[]) ?? [],
     }));
   }
 
@@ -47,6 +48,7 @@ export class BlogService {
       publishedAt: row['publishedAt'] as string,
       updatedAt: row['updatedAt'] as string,
       published: row['published'] as boolean,
+      tags: (row['tags'] as string[]) ?? [],
     }));
   }
 
@@ -78,6 +80,7 @@ export class BlogService {
       publishedAt: row['publishedAt'] as string,
       updatedAt: row['updatedAt'] as string,
       published: row['published'] as boolean,
+      tags: (row['tags'] as string[]) ?? [],
     };
   }
 
@@ -85,7 +88,7 @@ export class BlogService {
     await tablesDB.createRow({
       databaseId,
       tableId: blogPostsTableId,
-      rowId: 'unique()',
+      rowId: ID.unique(),
       data: {
         title: post.title,
         slug: post.slug,
@@ -96,6 +99,7 @@ export class BlogService {
         publishedAt: post.publishedAt,
         updatedAt: post.updatedAt,
         published: post.published,
+        tags: post.tags,
       },
     });
   }
@@ -115,6 +119,7 @@ export class BlogService {
         publishedAt: post.publishedAt,
         updatedAt: post.updatedAt,
         published: post.published,
+        tags: post.tags,
       },
     });
   }

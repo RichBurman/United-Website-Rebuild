@@ -1,16 +1,22 @@
 <article class="blog-card">
   @if (post().imageUrl) {
-    <img
-      class="blog-image"
-      [src]="post().imageUrl"
-      [alt]="post().title"
-    />
+    <img class="blog-image" [src]="post().imageUrl" [alt]="post().title" />
   }
 
   <div class="blog-content">
     <p class="blog-date">
-      {{ post().publishedAt | date:'d MMMM yyyy' }}
+      {{ post().publishedAt | date: "d MMMM yyyy" }}
     </p>
+
+    @if (post().tags.length) {
+      <div class="blog-tags">
+        @for (tag of post().tags; track tag) {
+          <span class="blog-tag">
+            {{ tag }}
+          </span>
+        }
+      </div>
+    }
 
     <h2>{{ post().title }}</h2>
 
@@ -18,10 +24,7 @@
       {{ post().excerpt }}
     </p>
 
-    <a
-      class="read-more"
-      [routerLink]="['/blog', post().slug]"
-    >
+    <a class="read-more" [routerLink]="['/blog', post().slug]">
       Read article
     </a>
   </div>
