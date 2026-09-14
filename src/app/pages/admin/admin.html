@@ -9,6 +9,36 @@
 
       <button type="button" (click)="logout()">Log Out</button>
     </div>
+
+    <div class="admin-header">
+      <h2>Blog Posts</h2>
+
+      <button type="button">New Post</button>
+    </div>
+
+    <div class="admin-posts">
+      @for (post of posts(); track post.id) {
+        <article class="admin-post">
+          <div>
+            <h3>{{ post.title }}</h3>
+
+            <span class="post-status">
+              @if (post.published) {
+                Published
+              } @else {
+                Draft
+              }
+            </span>
+          </div>
+
+          <div class="post-actions">
+            <button type="button">Edit</button>
+
+            <button type="button">Delete</button>
+          </div>
+        </article>
+      }
+    </div>
   } @else {
     <div class="login-card">
       <h1>Admin Login</h1>
