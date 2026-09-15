@@ -1,5 +1,6 @@
 .blog-card {
   background: #ffffff;
+  color: #111827;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
@@ -24,6 +25,7 @@
 
 .blog-content h2 {
   margin: 0 0 0.75rem;
+  color: #111827;
   font-size: 1.4rem;
 }
 

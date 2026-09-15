@@ -1,157 +1,184 @@
 <section class="home-page">
+  <!-- Hero -->
   <section class="hero">
-    <div class="container">
-      <p class="hero-label">Manchester United</p>
+    <div class="hero-background-text">MUFC</div>
 
-      <h1>United Hub</h1>
-
-      <p class="hero-text">
-        Fixtures, results, league standings and the latest United discussion.
-        Everything United. One place.
-      </p>
-    </div>
-  </section>
-
-  <section class="match-overview">
-    <div class="container">
-      <div class="match-grid">
-        @if (lastResult(); as result) {
-          <article class="match-card">
-            <div class="match-card-header">
-              <span>Last Result</span>
-              <span>{{ result.competition }}</span>
-            </div>
-
-            <div class="teams">
-              <div class="team">
-                <img [src]="result.homeTeamCrest" [alt]="result.homeTeam" />
-
-                <span>{{ result.homeTeam }}</span>
-              </div>
-
-              <div class="score">
-                {{ result.homeScore }} - {{ result.awayScore }}
-              </div>
-
-              <div class="team">
-                <img [src]="result.awayTeamCrest" [alt]="result.awayTeam" />
-
-                <span>{{ result.awayTeam }}</span>
-              </div>
-            </div>
-
-            <div class="match-details">
-              {{ result.date | date: "EEE d MMM" }}
-            </div>
-          </article>
-        }
-
-        @if (nextMatch(); as match) {
-          <article class="match-card">
-            <div class="match-card-header">
-              <span>Next Match</span>
-              <span>{{ match.competition }}</span>
-            </div>
-
-            <div class="teams">
-              <div class="team">
-                <img [src]="match.homeTeamCrest" [alt]="match.homeTeam" />
-
-                <span>{{ match.homeTeam }}</span>
-              </div>
-
-              <div class="versus">VS</div>
-
-              <div class="team">
-                <img [src]="match.awayTeamCrest" [alt]="match.awayTeam" />
-
-                <span>{{ match.awayTeam }}</span>
-              </div>
-            </div>
-
-            <div class="match-details">
-              {{ match.date | date: "EEE d MMM • HH:mm" }}
-              <span>•</span>
-              {{ match.venue }}
-            </div>
-          </article>
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="recent-form-section">
-    <div class="container">
-      <div class="section-heading">
-        <h2>Recent Form</h2>
-        <p>Manchester United's last five matches</p>
-      </div>
-
-      <div class="form-list">
-        @for (result of recentForm(); track $index) {
-          <span
-            class="form-result"
-            [class.win]="result === 'W'"
-            [class.draw]="result === 'D'"
-            [class.loss]="result === 'L'"
-          >
-            {{ result }}
-          </span>
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="mini-table-section">
-    <div class="container">
-      <div class="section-heading">
-        <h2>Premier League</h2>
-        <p>Manchester United's current league position</p>
-      </div>
-
-      <div class="mini-table">
-        <div class="table-row table-header">
-          <span>Pos</span>
-          <span>Team</span>
-          <span>P</span>
-          <span>GD</span>
-          <span>Pts</span>
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Manchester United
         </div>
 
-        @for (team of miniLeagueTable(); track team.teamId) {
-          <div class="table-row" [class.united]="team.tla === 'MUN'">
-            <span>{{ team.position }}</span>
+        <h1>
+          United
+          <span>Hub</span>
+        </h1>
 
-            <div class="table-team">
-              <img [src]="team.crest" [alt]="team.teamName" />
-
-              <span>{{ team.teamName }}</span>
-            </div>
-
-            <span>{{ team.playedGames }}</span>
-
-            <span>
-              @if (team.goalDifference > 0) {
-                +{{ team.goalDifference }}
-              } @else {
-                {{ team.goalDifference }}
-              }
-            </span>
-
-            <strong>{{ team.points }}</strong>
-          </div>
-        }
+        <p class="hero-text">
+          Your home for fixtures, results, league standings and the latest
+          Manchester United discussion.
+        </p>
       </div>
-
-      <a class="table-link" routerLink="/league-table"> View full table → </a>
     </div>
   </section>
 
+  <!-- Main Dashboard -->
+  <section class="dashboard-section">
+    <div class="container">
+      <div class="dashboard-grid">
+        <!-- Left Column -->
+        <div class="dashboard-main">
+          <!-- Match Cards -->
+          <div class="match-grid">
+            @if (lastResult(); as result) {
+              <article class="match-card">
+                <div class="match-card-header">
+                  <span>Last Result</span>
+                  <span>{{ result.competition }}</span>
+                </div>
+
+                <div class="teams">
+                  <div class="team">
+                    <img [src]="result.homeTeamCrest" [alt]="result.homeTeam" />
+
+                    <span>{{ result.homeTeam }}</span>
+                  </div>
+
+                  <div class="score">
+                    {{ result.homeScore }} - {{ result.awayScore }}
+                  </div>
+
+                  <div class="team">
+                    <img [src]="result.awayTeamCrest" [alt]="result.awayTeam" />
+
+                    <span>{{ result.awayTeam }}</span>
+                  </div>
+                </div>
+
+                <div class="match-details">
+                  {{ result.date | date: "EEE d MMM" }}
+                </div>
+              </article>
+            }
+
+            @if (nextMatch(); as match) {
+              <article class="match-card">
+                <div class="match-card-header">
+                  <span>Next Match</span>
+                  <span>{{ match.competition }}</span>
+                </div>
+
+                <div class="teams">
+                  <div class="team">
+                    <img [src]="match.homeTeamCrest" [alt]="match.homeTeam" />
+
+                    <span>{{ match.homeTeam }}</span>
+                  </div>
+
+                  <div class="versus">VS</div>
+
+                  <div class="team">
+                    <img [src]="match.awayTeamCrest" [alt]="match.awayTeam" />
+
+                    <span>{{ match.awayTeam }}</span>
+                  </div>
+                </div>
+
+                <div class="match-details">
+                  {{ match.date | date: "EEE d MMM • HH:mm" }}
+                  <span>•</span>
+                  {{ match.venue }}
+                </div>
+              </article>
+            }
+          </div>
+
+          <!-- Recent Form -->
+          <div class="recent-form">
+            <div class="recent-form-content">
+              <div>
+                <span class="dashboard-eyebrow"> Form Guide </span>
+
+                <h2>Recent Form</h2>
+
+                <p>Manchester United's last five matches</p>
+              </div>
+
+              <div class="form-list">
+                @for (result of recentForm(); track $index) {
+                  <span
+                    class="form-result"
+                    [class.win]="result === 'W'"
+                    [class.draw]="result === 'D'"
+                    [class.loss]="result === 'L'"
+                  >
+                    {{ result }}
+                  </span>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <aside class="dashboard-sidebar">
+          <div class="league-panel">
+            <div class="league-heading">
+              <span class="dashboard-eyebrow"> Standings </span>
+
+              <h2>Premier League</h2>
+
+              <p>Manchester United's current position</p>
+            </div>
+
+            <div class="mini-table">
+              <div class="table-row table-header">
+                <span>Pos</span>
+                <span>Team</span>
+                <span>P</span>
+                <span>Pts</span>
+              </div>
+
+              @for (team of miniLeagueTable(); track team.teamId) {
+                <div class="table-row" [class.united]="team.tla === 'MUN'">
+                  <span>{{ team.position }}</span>
+
+                  <div class="table-team">
+                    <img [src]="team.crest" [alt]="team.teamName" />
+
+                    <span>{{ team.teamName }}</span>
+                  </div>
+
+                  <span>{{ team.playedGames }}</span>
+
+                  <strong>{{ team.points }}</strong>
+                </div>
+              }
+            </div>
+
+            <a class="table-link" routerLink="/league-table">
+              View full table →
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Blog Posts -->
   <section class="latest-blog-section">
     <div class="container">
-      <div class="section-heading">
-        <h2>Latest from the Blog</h2>
-        <p>Latest Manchester United thoughts, analysis and opinion.</p>
+      <div class="blog-section-header">
+        <div>
+          <span class="section-eyebrow"> United Blog </span>
+
+          <h2>Latest from the Blog</h2>
+
+          <p>Latest Manchester United thoughts, analysis and opinion.</p>
+        </div>
+
+        <a class="blog-link" routerLink="/blog"> View all posts → </a>
       </div>
 
       <div class="latest-blog-grid">
@@ -159,8 +186,6 @@
           <app-blog-card [post]="post" />
         }
       </div>
-
-      <a class="blog-link" routerLink="/blog"> View all posts → </a>
     </div>
   </section>
 </section>

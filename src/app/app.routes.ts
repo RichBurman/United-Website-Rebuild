@@ -29,14 +29,6 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'players',
-    component: Players,
-  },
-  {
-    path: 'players/:id',
-    component: PlayerProfile,
-  },
-  {
     path: 'league-table',
     component: LeagueTable,
   },
