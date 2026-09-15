@@ -1,37 +1,29 @@
 <section class="fixtures-page">
-
   <div class="fixtures-hero">
     <div class="container">
-
-      <span class="page-eyebrow">
-        Manchester United
-      </span>
+      <span class="page-eyebrow"> Manchester United </span>
 
       <h1>Fixtures & Results</h1>
 
-      <p>
-        Match results and upcoming Manchester United fixtures.
-      </p>
-
+      <p>Match results and upcoming Manchester United fixtures.</p>
     </div>
   </div>
 
   <div class="fixtures-content">
     <div class="container">
-
       @if (fixtures$ | async; as fixtures) {
-
         <div class="fixtures-heading">
           <div>
-            <span class="section-eyebrow">
-              Match Centre
-            </span>
+            <span class="section-eyebrow"> Match Centre </span>
 
             <h2>All Matches</h2>
 
-            <p>
-              Results and upcoming fixtures across all competitions.
-            </p>
+            <p>Results and upcoming fixtures across all competitions.</p>
+            <div class="fixtures-notice">
+              <span class="notice-icon">i</span>
+
+              <p>League Cup and FA Cup fixtures are not currently included.</p>
+            </div>
           </div>
         </div>
 
@@ -40,10 +32,7 @@
             <app-fixture-card [fixture]="fixture" />
           }
         </div>
-
       }
-
     </div>
   </div>
-
 </section>

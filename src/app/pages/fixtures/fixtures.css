@@ -125,3 +125,34 @@
     padding: 2rem 0 3rem;
   }
 }
+
+.fixtures-notice {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: fit-content;
+  margin-top: 1rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #6b7280;
+  font-size: 0.82rem;
+}
+
+.fixtures-notice p {
+  margin: 0;
+}
+
+.notice-icon {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #111827;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 800;
+}

@@ -21,8 +21,10 @@ export class FixtureService {
     return this.http
       .get<FixtureApiResponse>('/api/v4/teams/66/matches', { headers })
       .pipe(
-        map((response) =>
-          response.matches
+        map((response) => {
+          console.log('RAW UNITED MATCHES:', response.matches);
+
+          return response.matches
             .map(
               (match): Fixture => ({
                 id: match.id,
@@ -30,25 +32,20 @@ export class FixtureService {
                 venue:
                   match.venue ??
                   (match.homeTeam.tla === 'MUN' ? 'Old Trafford' : 'Away'),
-
                 homeTeam: match.homeTeam.shortName,
                 homeTeamCrest: match.homeTeam.crest,
-
                 awayTeam: match.awayTeam.shortName,
                 awayTeamCrest: match.awayTeam.crest,
-
                 homeScore: match.score.fullTime.home,
                 awayScore: match.score.fullTime.away,
-
                 competition: match.competition.name,
-
                 status: match.status === 'FINISHED' ? 'FINISHED' : 'UPCOMING',
               }),
             )
             .sort(
               (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-            ),
-        ),
+            );
+        }),
       );
   }
 }
