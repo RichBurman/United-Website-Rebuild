@@ -1,53 +1,70 @@
-<article class="fixture-card">
+<article
+  class="fixture-card"
+  [class.finished]="fixture().status === 'FINISHED'"
+>
+
   <div class="fixture-header">
+
+    <div>
+      <span class="fixture-label">
+        {{ fixture().status === 'FINISHED' ? 'Result' : 'Fixture' }}
+      </span>
+
+      <span class="fixture-competition">
+        {{ fixture().competition }}
+      </span>
+    </div>
+
     <div class="fixture-date">
-      {{ fixture().date | date: "EEE d MMM, HH:mm" }}
+      {{ fixture().date | date: "EEE d MMM" }}
     </div>
 
-    <div class="fixture-venue">
-      {{ fixture().venue }}
-    </div>
-
-    <div class="fixture-competition">
-      {{ fixture().competition }}
-    </div>
   </div>
 
   <div class="fixture-content">
+
     <div class="team">
       <img
         class="team-crest"
         [src]="fixture().homeTeamCrest"
-        [alt]="fixture().homeTeam + ' crest'"
+        [alt]="fixture().homeTeam"
       />
 
       <span>{{ fixture().homeTeam }}</span>
     </div>
 
-    <div class="score">
-      @if (fixture().status === "FINISHED") {
-        <span> {{ fixture().homeScore }} - {{ fixture().awayScore }} </span>
+    <div class="fixture-centre">
+
+      @if (fixture().status === 'FINISHED') {
+        <div class="score">
+          {{ fixture().homeScore }} - {{ fixture().awayScore }}
+        </div>
+
+        <span class="fixture-status">
+          Full Time
+        </span>
       } @else {
-        <span>VS</span>
+        <div class="kickoff">
+          {{ fixture().date | date: "HH:mm" }}
+        </div>
+
+        <span class="fixture-status">
+          {{ fixture().venue }}
+        </span>
       }
+
     </div>
 
     <div class="team">
       <img
         class="team-crest"
         [src]="fixture().awayTeamCrest"
-        [alt]="fixture().awayTeam + ' crest'"
+        [alt]="fixture().awayTeam"
       />
 
       <span>{{ fixture().awayTeam }}</span>
     </div>
+
   </div>
 
-  <div class="fixture-status">
-    @if (fixture().status === "FINISHED") {
-      Full Time
-    } @else {
-      Upcoming
-    }
-  </div>
 </article>

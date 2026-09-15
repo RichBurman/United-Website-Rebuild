@@ -1,13 +1,49 @@
 <section class="fixtures-page">
-  <div class="container">
-    <h1>Manchester United Fixtures</h1>
 
-    @if (fixtures$ | async; as fixtures) {
-      <div class="fixtures-grid">
-        @for (fixture of fixtures; track fixture.id) {
-          <app-fixture-card [fixture]="fixture" />
-        }
-      </div>
-    }
+  <div class="fixtures-hero">
+    <div class="container">
+
+      <span class="page-eyebrow">
+        Manchester United
+      </span>
+
+      <h1>Fixtures & Results</h1>
+
+      <p>
+        Match results and upcoming Manchester United fixtures.
+      </p>
+
+    </div>
   </div>
+
+  <div class="fixtures-content">
+    <div class="container">
+
+      @if (fixtures$ | async; as fixtures) {
+
+        <div class="fixtures-heading">
+          <div>
+            <span class="section-eyebrow">
+              Match Centre
+            </span>
+
+            <h2>All Matches</h2>
+
+            <p>
+              Results and upcoming fixtures across all competitions.
+            </p>
+          </div>
+        </div>
+
+        <div class="fixtures-grid">
+          @for (fixture of fixtures; track fixture.id) {
+            <app-fixture-card [fixture]="fixture" />
+          }
+        </div>
+
+      }
+
+    </div>
+  </div>
+
 </section>
