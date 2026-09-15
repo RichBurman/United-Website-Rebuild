@@ -16,28 +16,65 @@
     <div class="container">
       <div class="match-grid">
         @if (lastResult(); as result) {
-          <div>
-            <h2>Last Result</h2>
+          <article class="match-card">
+            <div class="match-card-header">
+              <span>Last Result</span>
+              <span>{{ result.competition }}</span>
+            </div>
 
-            <p>
-              {{ result.homeTeam }}
-              {{ result.homeScore }} -
-              {{ result.awayScore }}
-              {{ result.awayTeam }}
-            </p>
-          </div>
+            <div class="teams">
+              <div class="team">
+                <img [src]="result.homeTeamCrest" [alt]="result.homeTeam" />
+
+                <span>{{ result.homeTeam }}</span>
+              </div>
+
+              <div class="score">
+                {{ result.homeScore }} - {{ result.awayScore }}
+              </div>
+
+              <div class="team">
+                <img [src]="result.awayTeamCrest" [alt]="result.awayTeam" />
+
+                <span>{{ result.awayTeam }}</span>
+              </div>
+            </div>
+
+            <div class="match-details">
+              {{ result.date | date: "EEE d MMM" }}
+            </div>
+          </article>
         }
 
         @if (nextMatch(); as match) {
-          <div>
-            <h2>Next Match</h2>
+          <article class="match-card">
+            <div class="match-card-header">
+              <span>Next Match</span>
+              <span>{{ match.competition }}</span>
+            </div>
 
-            <p>
-              {{ match.homeTeam }}
-              vs
-              {{ match.awayTeam }}
-            </p>
-          </div>
+            <div class="teams">
+              <div class="team">
+                <img [src]="match.homeTeamCrest" [alt]="match.homeTeam" />
+
+                <span>{{ match.homeTeam }}</span>
+              </div>
+
+              <div class="versus">VS</div>
+
+              <div class="team">
+                <img [src]="match.awayTeamCrest" [alt]="match.awayTeam" />
+
+                <span>{{ match.awayTeam }}</span>
+              </div>
+            </div>
+
+            <div class="match-details">
+              {{ match.date | date: "EEE d MMM • HH:mm" }}
+              <span>•</span>
+              {{ match.venue }}
+            </div>
+          </article>
         }
       </div>
     </div>

@@ -1,10 +1,12 @@
+import { DatePipe } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
 
 import { Fixture } from '../../models/fixture';
 import { FixtureService } from '../../services/fixture/fixture';
+
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
