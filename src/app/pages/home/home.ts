@@ -24,9 +24,27 @@ export class Home {
   });
 
   nextMatch = computed(() => {
-    return this.fixtures().find(
-      (fixture) => fixture.status === 'UPCOMING',
-    );
+    return this.fixtures().find((fixture) => fixture.status === 'UPCOMING');
+  });
+
+  recentForm = computed(() => {
+    const finishedMatches = this.fixtures()
+      .filter((fixture) => fixture.status === 'FINISHED')
+      .slice(-5);
+
+    return finishedMatches.map((fixture) => {
+      if (fixture.homeScore === fixture.awayScore) {
+        return 'D';
+      }
+
+      const unitedAreHome = fixture.homeTeam === 'Man United';
+
+      if (unitedAreHome) {
+        return fixture.homeScore! > fixture.awayScore! ? 'W' : 'L';
+      }
+
+      return fixture.awayScore! > fixture.homeScore! ? 'W' : 'L';
+    });
   });
 
   constructor() {

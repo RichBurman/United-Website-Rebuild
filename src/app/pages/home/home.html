@@ -79,4 +79,26 @@
       </div>
     </div>
   </section>
+
+  <section class="recent-form-section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Recent Form</h2>
+        <p>Manchester United's last five matches</p>
+      </div>
+
+      <div class="form-list">
+        @for (result of recentForm(); track $index) {
+          <span
+            class="form-result"
+            [class.win]="result === 'W'"
+            [class.draw]="result === 'D'"
+            [class.loss]="result === 'L'"
+          >
+            {{ result }}
+          </span>
+        }
+      </div>
+    </div>
+  </section>
 </section>
