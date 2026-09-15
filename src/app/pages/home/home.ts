@@ -1,19 +1,40 @@
 import { DatePipe } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { Fixture } from '../../models/fixture';
 import { FixtureService } from '../../services/fixture/fixture';
 
+import { LeagueTeam } from '../../models/league';
+import { League } from '../../services/league/league';
+
 @Component({
   selector: 'app-home',
-  imports: [DatePipe],
+  imports: [DatePipe, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home {
   private fixtureService = inject(FixtureService);
+  private leagueService = inject(League);
 
   fixtures = signal<Fixture[]>([]);
+  leagueTable = signal<LeagueTeam[]>([]);
+
+  miniLeagueTable = computed(() => {
+    const table = this.leagueTable();
+
+    const unitedIndex = table.findIndex((team) => team.tla === 'MUN');
+
+    if (unitedIndex === -1) {
+      return [];
+    }
+
+    const startIndex = Math.max(0, unitedIndex - 2);
+    const endIndex = Math.min(table.length, unitedIndex + 3);
+
+    return table.slice(startIndex, endIndex);
+  });
 
   lastResult = computed(() => {
     const finishedMatches = this.fixtures().filter(
@@ -49,6 +70,7 @@ export class Home {
 
   constructor() {
     this.loadFixtures();
+    this.loadLeagueTable();
   }
 
   loadFixtures() {
@@ -58,6 +80,17 @@ export class Home {
       },
       error: (error) => {
         console.error('Unable to load home fixtures:', error);
+      },
+    });
+  }
+
+  loadLeagueTable() {
+    this.leagueService.getLeagueTable().subscribe({
+      next: (table) => {
+        this.leagueTable.set(table);
+      },
+      error: (error) => {
+        console.error('Unable to load league table:', error);
       },
     });
   }

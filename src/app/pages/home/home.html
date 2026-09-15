@@ -101,4 +101,49 @@
       </div>
     </div>
   </section>
+
+  <section class="mini-table-section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Premier League</h2>
+        <p>Manchester United's current league position</p>
+      </div>
+
+      <div class="mini-table">
+        <div class="table-row table-header">
+          <span>Pos</span>
+          <span>Team</span>
+          <span>P</span>
+          <span>GD</span>
+          <span>Pts</span>
+        </div>
+
+        @for (team of miniLeagueTable(); track team.teamId) {
+          <div class="table-row" [class.united]="team.tla === 'MUN'">
+            <span>{{ team.position }}</span>
+
+            <div class="table-team">
+              <img [src]="team.crest" [alt]="team.teamName" />
+
+              <span>{{ team.teamName }}</span>
+            </div>
+
+            <span>{{ team.playedGames }}</span>
+
+            <span>
+              @if (team.goalDifference > 0) {
+                +{{ team.goalDifference }}
+              } @else {
+                {{ team.goalDifference }}
+              }
+            </span>
+
+            <strong>{{ team.points }}</strong>
+          </div>
+        }
+      </div>
+
+      <a class="table-link" routerLink="/league-table"> View full table → </a>
+    </div>
+  </section>
 </section>

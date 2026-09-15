@@ -168,3 +168,82 @@
 .form-result.loss {
   background: #dc2626;
 }
+
+.mini-table-section {
+  padding: 3rem 0;
+  background: #f5f6f8;
+}
+
+.mini-table {
+  overflow: hidden;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 60px 60px 60px;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table-row:last-child {
+  border-bottom: 0;
+}
+
+.table-header {
+  background: #111827;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.table-team {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 700;
+}
+
+.table-team img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.table-row.united {
+  background: #fff1f0;
+  color: #b91c1c;
+  font-weight: 700;
+}
+
+.table-link {
+  display: block;
+  width: fit-content;
+  margin: 1.25rem 0 0 auto;
+  color: #da291c;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.table-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .table-row {
+    grid-template-columns: 40px 1fr 35px 40px 40px;
+    gap: 0.5rem;
+    padding: 0.85rem;
+    font-size: 0.85rem;
+  }
+
+  .table-team img {
+    width: 26px;
+    height: 26px;
+  }
+}
