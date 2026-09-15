@@ -146,4 +146,21 @@
       <a class="table-link" routerLink="/league-table"> View full table → </a>
     </div>
   </section>
+
+  <section class="latest-blog-section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Latest from the Blog</h2>
+        <p>Latest Manchester United thoughts, analysis and opinion.</p>
+      </div>
+
+      <div class="latest-blog-grid">
+        @for (post of latestBlogPosts(); track post.id) {
+          <app-blog-card [post]="post" />
+        }
+      </div>
+
+      <a class="blog-link" routerLink="/blog"> View all posts → </a>
+    </div>
+  </section>
 </section>

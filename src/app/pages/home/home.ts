@@ -8,18 +8,28 @@ import { FixtureService } from '../../services/fixture/fixture';
 import { LeagueTeam } from '../../models/league';
 import { League } from '../../services/league/league';
 
+import { BlogCard } from '../../components/blog-card/blog-card';
+import { BlogPost } from '../../models/blog-post';
+import { BlogService } from '../../services/blog/blog.service.ts';
+
 @Component({
   selector: 'app-home',
-  imports: [DatePipe, RouterLink],
+  imports: [DatePipe, RouterLink, BlogCard],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home {
   private fixtureService = inject(FixtureService);
   private leagueService = inject(League);
+  private blogService = inject(BlogService);
 
   fixtures = signal<Fixture[]>([]);
   leagueTable = signal<LeagueTeam[]>([]);
+  blogPosts = signal<BlogPost[]>([]);
+
+  latestBlogPosts = computed(() => {
+    return this.blogPosts().slice(0, 3);
+  });
 
   miniLeagueTable = computed(() => {
     const table = this.leagueTable();
@@ -71,6 +81,7 @@ export class Home {
   constructor() {
     this.loadFixtures();
     this.loadLeagueTable();
+    this.loadBlogPosts();
   }
 
   loadFixtures() {
@@ -93,5 +104,14 @@ export class Home {
         console.error('Unable to load league table:', error);
       },
     });
+  }
+
+  async loadBlogPosts() {
+    try {
+      const posts = await this.blogService.getPosts();
+      this.blogPosts.set(posts);
+    } catch (error) {
+      console.error('Unable to load home blog posts:', error);
+    }
   }
 }
