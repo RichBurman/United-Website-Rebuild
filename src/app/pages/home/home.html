@@ -1,1 +1,45 @@
-<h1>Home</h1>
+<section class="home-page">
+  <section class="hero">
+    <div class="container">
+      <p class="hero-label">Manchester United</p>
+
+      <h1>United Hub</h1>
+
+      <p class="hero-text">
+        Fixtures, results, league standings and the latest United discussion.
+        Everything United. One place.
+      </p>
+    </div>
+  </section>
+
+  <section class="match-overview">
+    <div class="container">
+      <div class="match-grid">
+        @if (lastResult(); as result) {
+          <div>
+            <h2>Last Result</h2>
+
+            <p>
+              {{ result.homeTeam }}
+              {{ result.homeScore }} -
+              {{ result.awayScore }}
+              {{ result.awayTeam }}
+            </p>
+          </div>
+        }
+
+        @if (nextMatch(); as match) {
+          <div>
+            <h2>Next Match</h2>
+
+            <p>
+              {{ match.homeTeam }}
+              vs
+              {{ match.awayTeam }}
+            </p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+</section>
